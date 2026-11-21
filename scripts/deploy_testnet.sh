@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Deploy and initialize the Linkora contract on Stellar Testnet.
+# See docs/DEPLOYMENT.md for the complete Testnet/Mainnet runbook, verification,
+# and current helper limitations (tool-skip exit codes, artifact path, key import).
 #
 # Required environment variables:
 #   ADMIN_SECRET     - Secret key of the deployer / contract admin account

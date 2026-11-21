@@ -1,5 +1,10 @@
 # Linkora Contract Deployment Guide
 
+> For the current **Testnet and Mainnet runbook**, use [DEPLOYMENT.md](./DEPLOYMENT.md).
+> It covers workspace artifact paths, helper compatibility limits, network-specific
+> configuration, post-deployment verification, and recovery. This older guide retains
+> Testnet/Futurenet background; check its commands against that runbook before use.
+
 This guide covers the end-to-end workflow for deploying, initializing, verifying, and
 upgrading the Linkora Soroban smart contract on Stellar **Testnet** and **Futurenet**. For
 backend service deployment (indexer, DM relay, analytics oracle) see

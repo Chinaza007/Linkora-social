@@ -1,3 +1,12 @@
+/**
+ * Legacy normalized SDK event types and parser.
+ *
+ * The authoritative topic/data schemas and per-event examples are documented in
+ * docs/CONTRACT_API.md#10-contract-event-schema-reference. In particular, raw
+ * #[contractevent] prefixes and positional scalar topics are not equivalent to
+ * this parser's aliases and object-topic payload normalization. See that guide's
+ * "SDK event parser" section for current coverage and adapter requirements.
+ */
 import { scValToNative, xdr } from "@stellar/stellar-base";
 import type { GovParameter } from "../generated/types.js";
 import * as Gen from "../generated/events.js";
@@ -365,27 +374,15 @@ function strArray(value: unknown): string[] {
 }
 
 /**
- * Parse a raw Soroban event into a strongly-typed LinkoraEvent.
+ * Parse a legacy/normalized Soroban event into a typed LinkoraEvent.
+ *
+ * This is not a complete decoder for the current Rust contract wire schema.
+ * See docs/CONTRACT_API.md#sdk-event-parser before passing positional RPC topics.
  *
  * @param raw The raw event payload from the Soroban RPC.
  * @returns The parsed LinkoraEvent, or null if the event type is unrecognized.
  *
- * @example
- * ```ts
- * const rawEvent = {
- *   topics: [
- *     "AAAAAQAAAANwb3N0", // "post"
- *     "AAAAAQAAAAV1c2VyMQ==",
- *   ],
- *   data: "AAAAAQAAAAFjb250ZW50",
- *   ledger: 1000,
- * };
- *
- * const event = parseContractEvent(rawEvent);
- * if (event?.type === "post_created") {
- *   console.log(`Post created by: ${event.author}`);
- * }
- * ```
+ * @see docs/CONTRACT_API.md#10-contract-event-schema-reference
  */
 export function parseContractEvent(raw: SorobanEvent, tokenFactoryId?: string): LinkoraEvent | null {
   try {
